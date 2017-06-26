@@ -11,3 +11,6 @@ var lastname = "Hendricks"
 var fullname = firstname + lastname
 fullname = firstname + " " + lastname
 fullname = "\(firstname) \(lastname)"
+
+
+//: [Conditions](@next)
