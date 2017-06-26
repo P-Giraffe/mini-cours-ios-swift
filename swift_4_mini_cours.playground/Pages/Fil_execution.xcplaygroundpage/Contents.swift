@@ -12,3 +12,4 @@ if textVariable.count > 0 {
 for letter in textVariable {
     print("Lettre : \(letter)")
 }
+//: [Variables](@next)
