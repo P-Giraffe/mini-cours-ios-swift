@@ -9,8 +9,11 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var repeatLabel: UILabel!
+    
     @IBAction func repeatButtonTouched() {
         print("Bouton répéter touché par l'utilisateur")
+        repeatLabel.text = "Clic sur Répéter"
     }
     
     override func viewDidLoad() {
