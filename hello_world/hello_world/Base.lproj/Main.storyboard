@@ -58,6 +58,7 @@
                     </view>
                     <connections>
                         <outlet property="repeatLabel" destination="wvA-Ww-Ozm" id="vOj-KN-sZ5"/>
+                        <outlet property="userTextField" destination="WNT-PI-kdo" id="c0l-Gs-OGu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
