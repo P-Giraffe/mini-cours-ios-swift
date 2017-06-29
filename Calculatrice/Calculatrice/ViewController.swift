@@ -28,10 +28,13 @@ class ViewController: UIViewController {
     @IBAction func displayResults() {
     }
     @IBAction func resetValue() {
+        _currentNumber = 0
     }
     @IBAction func changeSign() {
+        _currentNumber = _currentNumber * -1
     }
     @IBAction func applyPercent() {
+        _currentNumber = _currentNumber / 100
     }
     
     @IBAction func digitButtonTouched(_ sender: UIButton) {
