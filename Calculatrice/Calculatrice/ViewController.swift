@@ -19,21 +19,45 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var ui_currentNumberLabel: UILabel!
     
+    func performWaitingCalculous() {
+        let result:Double
+        if _operationType == "+" {
+            result = _previousNumber + _currentNumber
+        } else if _operationType == "-" {
+            result = _previousNumber - _currentNumber
+        } else if _operationType == "*" {
+            result = _previousNumber * _currentNumber
+        } else if _operationType == "/" {
+            result = _previousNumber / _currentNumber
+        } else {
+            result = _currentNumber
+        }
+        _previousNumber = result
+        _currentNumber = 0
+        ui_currentNumberLabel.text = "\(result)"
+    }
+    
     @IBAction func divide() {
+        performWaitingCalculous()
         _operationType = "/"
     }
     @IBAction func multiply() {
+        performWaitingCalculous()
         _operationType = "*"
     }
     @IBAction func substract() {
+        performWaitingCalculous()
         _operationType = "-"
     }
     @IBAction func add() {
+        performWaitingCalculous()
         _operationType = "+"
     }
     @IBAction func displayResults() {
+        performWaitingCalculous()
     }
     @IBAction func resetValue() {
+        _previousNumber = 0
         _currentNumber = 0
     }
     @IBAction func changeSign() {
