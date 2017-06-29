@@ -9,6 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+    var _operationType : Character = " "
+    var _previousNumber : Double = 0
     var _currentNumber : Double = 0 {
         didSet {
             ui_currentNumberLabel.text = "\(_currentNumber)"
@@ -18,12 +20,16 @@ class ViewController: UIViewController {
     @IBOutlet weak var ui_currentNumberLabel: UILabel!
     
     @IBAction func divide() {
+        _operationType = "/"
     }
     @IBAction func multiply() {
+        _operationType = "*"
     }
     @IBAction func substract() {
+        _operationType = "-"
     }
     @IBAction func add() {
+        _operationType = "+"
     }
     @IBAction func displayResults() {
     }
