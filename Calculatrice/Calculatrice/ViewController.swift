@@ -9,7 +9,12 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    var _currentNumber : Double = 0 {
+        didSet {
+            ui_currentNumberLabel.text = "\(_currentNumber)"
+        }
+    }
+    
     @IBOutlet weak var ui_currentNumberLabel: UILabel!
     
     @IBAction func divide() {
@@ -30,7 +35,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func digitButtonTouched(_ sender: UIButton) {
-        ui_currentNumberLabel.text = "\(sender.tag)"
+        _currentNumber = (_currentNumber * 10) + Double(sender.tag)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
