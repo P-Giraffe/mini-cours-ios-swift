@@ -9,6 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    var _shouldResetCurrentNumber = true
     var _operationType : Character = " "
     var _previousNumber : Double = 0
     var _currentNumber : Double = 0 {
@@ -33,24 +34,32 @@ class ViewController: UIViewController {
             result = _currentNumber
         }
         _previousNumber = result
-        _currentNumber = 0
+        _shouldResetCurrentNumber = true
         ui_currentNumberLabel.text = "\(result)"
     }
     
     @IBAction func divide() {
-        performWaitingCalculous()
+        if _shouldResetCurrentNumber == false {
+            performWaitingCalculous()
+        }
         _operationType = "/"
     }
     @IBAction func multiply() {
-        performWaitingCalculous()
+        if _shouldResetCurrentNumber == false {
+            performWaitingCalculous()
+        }
         _operationType = "*"
     }
     @IBAction func substract() {
-        performWaitingCalculous()
+        if _shouldResetCurrentNumber == false {
+            performWaitingCalculous()
+        }
         _operationType = "-"
     }
     @IBAction func add() {
-        performWaitingCalculous()
+        if _shouldResetCurrentNumber == false {
+            performWaitingCalculous()
+        }
         _operationType = "+"
     }
     @IBAction func displayResults() {
@@ -59,6 +68,7 @@ class ViewController: UIViewController {
     @IBAction func resetValue() {
         _previousNumber = 0
         _currentNumber = 0
+        _operationType = " "
     }
     @IBAction func changeSign() {
         _currentNumber = _currentNumber * -1
@@ -68,7 +78,12 @@ class ViewController: UIViewController {
     }
     
     @IBAction func digitButtonTouched(_ sender: UIButton) {
-        _currentNumber = (_currentNumber * 10) + Double(sender.tag)
+        if _shouldResetCurrentNumber == true {
+            _currentNumber = Double(sender.tag)
+            _shouldResetCurrentNumber = false
+        } else {
+            _currentNumber = (_currentNumber * 10) + Double(sender.tag)
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
