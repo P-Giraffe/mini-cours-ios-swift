@@ -11,7 +11,8 @@ import UIKit
 class ViewController: UIViewController {
     var _shouldResetCurrentNumber = true
     var _operationType : Character = " "
-    var _previousNumber : Double = 0
+    var _previousResult : Double = 0
+    var _lastTypedNumber : Double = 0
     var _currentNumber : Double = 0 {
         didSet {
             ui_currentNumberLabel.text = "\(_currentNumber)"
@@ -23,19 +24,20 @@ class ViewController: UIViewController {
     func performWaitingCalculous() {
         let result:Double
         if _operationType == "+" {
-            result = _previousNumber + _currentNumber
+            result = _previousResult + _lastTypedNumber
         } else if _operationType == "-" {
-            result = _previousNumber - _currentNumber
+            result = _previousResult - _lastTypedNumber
         } else if _operationType == "*" {
-            result = _previousNumber * _currentNumber
+            result = _previousResult * _lastTypedNumber
         } else if _operationType == "/" {
-            result = _previousNumber / _currentNumber
+            result = _previousResult / _lastTypedNumber
         } else {
-            result = _currentNumber
+            result = _lastTypedNumber
         }
-        _previousNumber = result
+        
+        _previousResult = result
         _shouldResetCurrentNumber = true
-        ui_currentNumberLabel.text = "\(result)"
+        _currentNumber = result
     }
     
     @IBAction func divide() {
@@ -66,24 +68,28 @@ class ViewController: UIViewController {
         performWaitingCalculous()
     }
     @IBAction func resetValue() {
-        _previousNumber = 0
+        _previousResult = 0
         _currentNumber = 0
         _operationType = " "
+        _lastTypedNumber = 0
     }
     @IBAction func changeSign() {
         _currentNumber = _currentNumber * -1
+        _previousResult = _currentNumber
     }
     @IBAction func applyPercent() {
         _currentNumber = _currentNumber / 100
+        _previousResult = _currentNumber
     }
     
     @IBAction func digitButtonTouched(_ sender: UIButton) {
         if _shouldResetCurrentNumber == true {
-            _currentNumber = Double(sender.tag)
-            _shouldResetCurrentNumber = false
-        } else {
-            _currentNumber = (_currentNumber * 10) + Double(sender.tag)
+            _currentNumber = 0
+           _shouldResetCurrentNumber = false
         }
+        
+        _currentNumber = (_currentNumber * 10) + Double(sender.tag)
+        _lastTypedNumber = _currentNumber
     }
     override func viewDidLoad() {
         super.viewDidLoad()
