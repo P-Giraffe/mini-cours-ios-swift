@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     
     @IBAction func changeImage(_ sender: Any) {
-        
+        imageView.image = #imageLiteral(resourceName: "photo2")
     }
     
 
