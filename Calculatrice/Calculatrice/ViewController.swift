@@ -76,6 +76,7 @@ class ViewController: UIViewController {
     @IBAction func changeSign() {
         _currentNumber = _currentNumber * -1
         _previousResult = _currentNumber
+        _shouldResetCurrentNumber = true
     }
     @IBAction func applyPercent() {
         _currentNumber = _currentNumber / 100
